@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html ng-app="mwl.calendar.docs">
+  <head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.4/interact.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+    <script src="http://mattlewis.me/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="example.js"></script>
+    <script src="helpers.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+    <link href="http://mattlewis.me/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+  <style>
+  		 body{background-color:#e6e6e6}
+            p { display:inline; color:red;   }
+           .pa{height: auto;  border: 1px;border-style: solid; border-color: #999999; background-color: white; margin: 0 20px; padding: 0px}
+           .ca{height: auto; padding: 10px 0 10px 0; border: 1px;border-style: solid; border-color: #999999; background-color: white;display: inline; margin: 0 20px;}
+           .cc{height: auto;  border: 1px;border-style: solid; border-color: #999999; background-color: white; width: auto; margin: auto;padding: 0px}
+           .cc img{height: 75%;width: 82%; margin:0 10px;}
+           .hw {  height:17px;  width:17px;}  a {color: white} 
+          a:hover{color: white; text-decoration: none}
+          p a{color:rgb(145,26,48);text-decoration: none;} p a:hover{color:rgb(145,26,48); text-decoration: none;}
+          p{color: #595959}
+          div ul li a{color: #595959;} div ul li a:hover{color: #595959;}
+          .line{background-color:rgb(145,26,48);  } .lin{background-color:white}
+          .btn-file {   background-color: white;  display:inline;border-radius:0px; border: 0px }
+          .btn-file:hover {display:inline;border-radius:0px;background-color: white;  }
+          .btn-file input[type=file] {  position: absolute;  top: 0;  right: 0;  font-size: 100px; text-align: right;
+              filter: alpha(opacity=0);   opacity: 0;  cursor: inherit; }
+              nav{z-index:1;}
+              #ex1Slider .slider-selection {  background: #BABABA; }
+              input[type=range] {
+    /*removes default webkit styles*/
+    -webkit-appearance: none;
+    
+    /*fix for FF unable to apply focus style bug */
+    border: 1px solid white;
+    
+    /*required for proper track sizing in FF*/
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: grey;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: rgb(145,26,48);
+  margin-top:-1%;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: rgb(145,26,48);
+}
+
+input[type=range]::-moz-range-track {
+    width: 300px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring{
+    outline: 1px solid white;
+    outline-offset: -1px;
+}
+
+input[type=range]::-ms-track {
+   
+    
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+    
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+
+    /*remove default tick marks*/
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #888;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ccc;
+}
+			</style>
+      
+      <style>
+  /* Icon when the collapsible content is shown */
+  .bn:after {
+    font-family: "Glyphicons Halflings";
+    content: "\e114";
+    float: left;
+    
+  }
+ .oo {padding-left:5%}
+  /* Icon when the collapsible content is hidden */
+  .bn.collapsed:after {
+    content: "\e080";
+  }
+</style>
+  </head>
+
+ <body>
+    <nav class="navbar" style="background:rgb(145,26,48); color:#fff">
+      <div class="container-fluid">
+    
+          <div class="navbar-header">
+              
+              <img src="images\icon.jpg" style="display:inline;float:left"> 
+
+              <div class="input-group hidden-lg hidden-md hidden-sm" style="margin-left:28%" >            
+            <input type="text" class="form-control" placeholder="Search for..." style="width:150px;border-radius:10px 0 0 10px; display:inline;top:8px ">
+              <button class="btn btn-default" style="border-radius:0 12px 12px 0;margin-top:8px" type="button">
+               <img src="images\search-icon.png" class="hw"></button>
+            
+          </div >
+          </div>
+            
+       <div class="collapse navbar-collapse" >
+     
+      <form class="navbar-form hidden-xs " role="search" style="float:left;margin-left:6%" >
+               <div>
+          <div class="input-group" >
+            
+            <input type="text" class="form-control " placeholder="Search for..." style="width:280px; border-radius:10px 0 0 10px; ">
+              <button class="btn btn-default" style="border-radius:0 12px 12px 0" type="button">
+               <img src="images\search-icon.png" class="hw"></button>
+            </span> 
+          </div >
+            <span class="hidden-sm hidden-xs"> <a href="#"> | Expert Mode</a></span>            
+        </div> 
+     </form>    
+     
+      <ul class="nav navbar-nav navbar-right" style="float:left">
+        <li class="dropdown hidden-xs "><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"  style="background:url(icons.jpg);background-position:-10px 0px;width:40px;height:53px;background-repeat:no-repeat;"> </a>
+          <ul class="dropdown-menu  disabled">
+
+           
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle hidden-xs " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="background:url(icons.jpg);background-position:-49px 0px;width:40px;height:53px;background-repeat:no-repeat; "></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><img src="#">Message1</a></li>
+            <li><a href="#"><img src="#">Message2</a></li>
+            <li><a href="#"><img src="#">Message3</a></li>
+            <li><a href="#"><img src="#">Message4</a></li>
+          </ul>
+        </li>
+
+         <li class="dropdown"><a href="#" class="dropdown-toggle hidden-xs " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"style="background:url(icons.jpg);background-position:-96px 0px;width:40px;height:53px;background-repeat:no-repeat;"> </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Notification1</a></li>
+            <li><a href="#">Notification2</a></li>
+            <li><a href="#">Notification3</a></li>
+            <li><a href="#">Notification4</a></li>
+          </ul>
+        </li>
+
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle hidden-xs " data-toggle="dropdown" role="button" style="background:url(icons.jpg);background-position:-150px 0px;width:40px;height:53px;background-repeat:no-repeat;"> </a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><img src="#">Vedant Vyas</a></li>
+           <li role="separator" class="divider"></li>
+            <li><a href="#">Privacy</a></li>
+            <li role="separator" class="divider"></li>
+            <li><button class="btn" style="background-color:rgb(145,26,48); padding:auto 0px auto 0px;color:white; font-size:90%">My Account</button><button class="btn" style="background-color:grey;color:white;font-size:90%;margin-left:2px;padding:auto 0px auto 0px">Logout</button></li>
+          </ul>
+        </li>
+      </ul>
+
+  <!-- /.container-fluid -->
+ </nav>
+    
+
+      </div><!-- /.navbar-collapse -->
+
+          <div class="column hidden-lg hidden-sm hidden-md" style="position:absolute;top:5px;left:0;">
+          <div id="dl-menu" class="dl-menuwrapper">
+            <button class="dl-trigger">Open Menu</button>
+            <ul class="dl-menu">
+              <li>
+                <a href="#"><img src="images\pa.jpg">Profile</a>
+                <ul class="dl-submenu">
+                  <li>
+                    <a href="#">Account</a>
+                    <ul class="dl-submenu">
+                      <li><a href="#">Profile Update</a></li>
+                      <li><a href="#">Change Password</a></li>
+                      <li><a href="#">Pages</a></li>
+                      <li><a href="#">Likes</a></li>
+                      <li><a href="#">Favourites</a></li>
+                      
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Settings</a>
+                    <ul class="dl-submenu">
+                      <li><a href="#">Privacy</a></li>
+                      <li><a href="#">Block</a></li>
+                      <li><a href="#">ads</a></li>
+                      <li><a href="#">report spam</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Groups</a>
+                    <ul class="dl-submenu">
+                      <li><a href="#">Boys</a></li>
+                      <li><a href="#">Girls</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#"><img src="images\ma.jpg">Messages</a>
+                <ul class="dl-submenu">
+                  <li><a href="#">Message1</a></li>
+                  <li><a href="#">Message2</a></li>
+                  <li><a href="#">Message3</a></li>
+                  <li><a href="#">Message4</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#"><img src="images\na.jpg">Notifications</a>
+                   <ul class="dl-submenu">
+                      <li><a href="#">Notification1</a></li>
+                      <li><a href="#">Notification2</a></li>
+                      <li><a href="#">Notification3</a></li>
+                      <li><a href="#">Notification4</a></li>
+                    </ul>
+                  </li>
+                 
+              <li>
+                <a href="#"><img src="images\aa.jpg">Account</a>
+                <ul class="dl-submenu">
+                  <li><a href="#">Vedant Vyas</a></li>
+                 
+                  <li><a href="#">Privacy</a></li>
+                  <li style="border-bottom:0.19em solid ; border-color:#8c8c8c"></li>
+                  <li><input type="button" value="My Account" style="background-color:rgb(145,26,35);color:white;margin-right:3px"><input type="button" style="background-color:rgb(145,26,35);color:white;margin-right:3px" value="Logout"></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /dl-menuwrapper -->
+        </div>    </div>
+
+       
+
+    
+    
+     <div class="container-fluid">
+    <div class="row">
+
+         <img src="images\cover2.jpg" height="40%" width="100%" alt="Cover-Pic" style="position:absolute;z-index:-1;top:5%"> 
+        
+        <input type="button" value = "Add friend" class="btn" style="position:absolute;background:rgb(145,26,48);shadow:10px black;color:white;top:40% ; margin-left: 85%">  
+     
+           <div style="margin-top:250px;border-bottom:1.29em solid ; border-color:#8c8c8c">
+          </div></div>
+
+         
+          <div class="col-md-4" style=";margin-left:20%;position:relative;">
+         <ul class="list-unstyled  list-inline" > 
+         <li><h4 style="color:rgb(145,26,48)">About me</h4></li>
+        </ul>
+         <ul class="list-unstyled  list-inline" style="color:#8c8c8c">
+            <li>Sex:</li>
+            <li style=" margin-left:45px">Female</li>
+            </ul>
+            <ul class="list-unstyled  list-inline" >
+            <li>Working as:</li>
+            <li>Singer</li>
+         </ul>
+         <ul class="list-unstyled  list-inline" >
+            <li>location:</li>
+            <li style=" margin-left:18px">Delhi,India</li>
+         </ul>
+            </div>
+         <div class="col-md-5">
+         <ul class="list-unstyled  list-inline" > 
+         <li><h4 style="color:rgb(145,26,48)">Interests</h4></li>
+        </ul>
+         <ul class="list-unstyled  list-inline" >
+            <li >Desgining</li>
+            <li style=" margin-left:37px">Dancing</li>
+            </ul>
+            <ul class="list-unstyled  list-inline" >
+            <li>Filming</li>
+            <li style=" margin-left:45px">Singing</li>
+         </ul>
+         <ul class="list-unstyled  list-inline" >
+            <li>Cinema</li>
+            <li style=" margin-left:45px">Cooking</li>
+         </ul>
+            </div>  </div>
+                  <div class="row" style="background:white">
+             </div>
+<div class="row">
+               <div style="margin-top:0px;border-bottom:0.39em solid ; border-color:#8c8c8c"></div></div>
+
+                 <div class="row">
+             <div class="col-md-3"></div>
+      <div class="col-md-1"><button type="button" class="btn" style="margin-top:10px;background:rgb(145,26,48);color:white;">My story</button></div>
+       <div class="col-md-1" style="margin-top:15px"> <a href="#" style=" text-decoration: none ; color:black" >Friends</a></div>
+       <div class="col-md-1" style="margin-top:15px"> <a href="#" style=" text-decoration: none ; color:black">Faviorts</a></div>
+       <div class="col-md-1" style="margin-top:15px"><a href="#" style=" text-decoration: none; color:black">Messages</a></div>
+
+             </div>
+             <div class="row">  <div style="margin-top:10px;border-bottom:0.39em solid ; border-color:#8c8c8c"></div></div>
+              <div class="row">
+             <div class="col-md-2">
+             <h5 style="margin:20px 0 0 10px;color:rgb(145,26,48);">My Story</h5>
+             </div>
+             <div class="col-md-3">
+             <button type="button" class="btn btn-default " style="margin-top:10px ; border-radius:10px;"><i class="glyphicon glyphicon-calendar"> Story Mode</i></button>
+             <button type="button" class="btn btn-default" style="margin-top:10px ; border-radius:10px; background-color:#000000;color:#fff">Yearly <i class="glyphicon glyphicon-chevron-down"></i></button>
+
+             </div>
+             <div class="row">
+             <div class="col-md-5">
+             <input type="range" name="points" id="time" value="5" min="1" max="11" style="margin-top:5%;width:100%"></div>
+             </div>
+</div>
+             <div class="row">
+             <div class="col-md-5"></div>
+             <div class="col-md-7">
+             <ul class="list-inline" style="width:100%">
+               <li>2005</li> 
+                <li style ="margin-left:10px">2006</li>
+               <li style ="margin-left:10px">2007</li>
+               <li style ="margin-left:10px">2008</li>
+               <li style ="margin-left:10px">2009</li>
+               <li style ="margin-left:10px">2010</li>
+               <li style ="margin-left:10px">2011</li>
+               <li style ="margin-left:10px">2012</li>
+               <li style ="margin-left:10px">2013</li>
+               <li style ="margin-left:10px">2014</li>
+               <li style ="margin-left:10px">2015</li>
+
+           
+              
+             </ul>
+
+             </div>
+             <div style="margin-top:30px;border-bottom:0.39em solid ; border-color:#8c8c8c"></div>
+
+
+  </div>
+
+
+	<!--**************************************************TOP     NAVIGATION     BAR   ENDS   HERE************************************************************-->
+
+
+	<!--**************************************************SIDE     NAVIGATION     BAR   STARTS  HERE************************************************************-->
+<div class="row">
+<div class="col-md-2">
+             <input type="text" class="form-control" placeholder="Search" style="width:150px;border-radius:10px 10px 10px 10px; display:inline;margin-top:10%">
+              <button class="btn btn-default" style="border-radius:0 12px 12px 0;margin-left:-5%;border-left:0px;margin-top:-1%" type="button">
+               <img src="search-icon.png" class="hw"></button>
+
+           <ul  class="bn  collapsed" data-toggle="collapse" data-target="#demo">Contant</ul>
+            <div id="demo" class="collapse">
+                
+                                       <ul  class="list-unstyled oo">
+                                   <li>One</li>
+                                <li>Two</li>
+                                <li>Three</li>
+                        </ul>
+                  
+            </div>
+            
+               <ul  class="bn  collapsed" data-toggle="collapse" data-target="#demo1">Ratings</ul>
+                                      <div id="demo1" class="collapse">                                                      
+                                         <ul  class="list-unstyled oo">
+                                            <li>Likes</li>
+                                            <li>Comment</li>
+                                            <li>Shares</li>
+                                        </ul>
+                                      </div>
+        </div>
+<div class="col-md-9">
+
+<div ng-controller="KitchenSinkCtrl as vm">
+  <h2 class="text-center">{{ vm.calendarTitle }}</h2>
+
+  <div class="row">
+
+    <div class="col-md-6 text-center">
+      <div class="btn-group">
+
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="vm.viewDate"
+          decrement="vm.calendarView">
+          Previous
+        </button>
+        <button
+          class="btn btn-default"
+          mwl-date-modifier
+          date="vm.viewDate"
+          set-to-today>
+          Today
+        </button>
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="vm.viewDate"
+          increment="vm.calendarView">
+          Next
+        </button>
+      </div>
+    </div>
+
+    <br class="visible-xs visible-sm">
+
+    <div class="col-md-6 text-center">
+      <div class="btn-group">
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'">Year</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'">Month</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'">Week</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'">Day</label>
+      </div>
+    </div>
+
+  </div>
+
+  <br>
+
+  <mwl-calendar
+    events="vm.events"
+    view="vm.calendarView"
+    view-title="vm.calendarTitle"
+    view-date="vm.viewDate"
+    on-event-click="vm.eventClicked(calendarEvent)"
+    on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+    edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+    delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+    on-edit-event-click="vm.eventEdited(calendarEvent)"
+    on-delete-event-click="vm.eventDeleted(calendarEvent)"
+    cell-is-open="vm.isCellOpen"
+    day-view-start="06:00"
+    day-view-end="22:00"
+    day-view-split="30"
+    cell-modifier="vm.modifyCell(calendarCell)">
+  </mwl-calendar>
+
+  <br><br><br>
+
+  <h3 id="event-editor">
+    Edit events
+    <button
+      class="btn btn-primary pull-right"
+      ng-click="vm.events.push({title: 'New event', type: 'important', draggable: true, resizable: true})">
+      Add new
+    </button>
+    <div class="clearfix"></div>
+  </h3>
+
+  <table class="table table-bordered">
+
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Starts at</th>
+        <th>Ends at</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="event in vm.events track by $index">
+        <td>
+          <input
+            type="text"
+            class="form-control"
+            ng-model="event.title">
+        </td>
+        <td>
+          <select ng-model="event.type" class="form-control">
+            <option value="important">Important</option>
+            <option value="warning">Warning</option>
+            <option value="info">Info</option>
+            <option value="inverse">Inverse</option>
+            <option value="success">Success</option>
+            <option value="special">Special</option>
+          </select>
+        </td>
+        <td>
+          <p class="input-group" style="max-width: 250px">
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              uib-datepicker-popup="dd MMMM yyyy"
+              ng-model="event.startsAt"
+              is-open="event.startOpen"
+              close-text="Close" >
+            <span class="input-group-btn">
+              <button
+                type="button"
+                class="btn btn-default"
+                ng-click="vm.toggle($event, 'startOpen', event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </p>
+          <uib-timepicker
+            ng-model="event.startsAt"
+            hour-step="1"
+            minute-step="15"
+            show-meridian="true">
+          </uib-timepicker>
+        </td>
+        <td>
+          <p class="input-group" style="max-width: 250px">
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              uib-datepicker-popup="dd MMMM yyyy"
+              ng-model="event.endsAt"
+              is-open="event.endOpen"
+              close-text="Close">
+            <span class="input-group-btn">
+              <button
+                type="button"
+                class="btn btn-default"
+                ng-click="vm.toggle($event, 'endOpen', event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </p>
+          <uib-timepicker
+            ng-model="event.endsAt"
+            hour-step="1"
+            minute-step="15"
+            show-meridian="true">
+          </uib-timepicker>
+        </td>
+        <td>
+          <button
+            class="btn btn-danger"
+            ng-click="vm.events.splice($index, 1)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+</div></div>
+
+ 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js\jquery.dlmenu.js"></script>
+    <script>
+      $(function() {
+        $( '#dl-menu' ).dlmenu({
+          animationClasses : { classin : 'dl-animate-in-4', classout : 'dl-animate-out-4' }
+        });
+      });
+    </script>
+    <script>
+  $(function() {
+    $( "#slider" ).slider();
+  });
+    </script>
+
+  </body>
+</html>

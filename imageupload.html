@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<style>
+.btn-file {
+  position: relative;
+  overflow: hidden;	
+  background:lightgrey;
+  display:inline;color:lightgrey;background:grey;border-radius:0px;font-size:110%;margin-left:-1%;width:6em;
+}
+.btn-file:hover
+{
+	display:inline;color:lightgrey;background:grey;border-radius:0px;font-size:110%;margin-left:-1%;width:6em;
+}
+.btn-file:target
+{
+	display:inline;color:lightgrey;background:grey;border-radius:0px;font-size:110%;margin-left:-1%;width:6em;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+.up {
+	background:lightgrey;
+}
+input {
+  background-color : grey; 
+
+}
+</style>
+<body>
+	<div class="navbar" style="background:rgb(145,26,48);border-radius:0px;">
+	<img src="D:\dmtree\Website\images\icon.jpg">
+	<img src="icons.jpg" style="float:right;">	
+	</div>
+<div class="container fluid main" style="border:0px black solid;">
+	<p style="color:rgb(145,26,48);text-align:center;font-size:36px;font-weight:100;">Great! You are just a few steps away</i><br>
+	<img class="img-responsive" src="D:\dmtree\Website\images\slider.png" style="padding:10px;margin-top:10px;margin:auto;">	
+	<br>
+	<p style="color:rgb(0,0,0);text-align:center;font-size:25px;font-weight:100;">Profile Picture</p>
+   
+	<img src="D:\dmtree\Website\images\user.png" style="margin-left:42%;">
+	<form>
+  	<div class="form-group" style="margin:20px;">
+  
+  	<input type="text" class="form-control pa" style="background-color:grey;display:inline;width:22%;margin-left:35%;height:32px;border-radius:0px;"placeholder="Choose File" readonly>
+
+  	<span class="btn btn-primary btn-file" >
+       <input class="up" type="file" multiple>Choose</span>
+            </div>
+</div>
+    <p style="font-size:16px;color:grey;margin-left:39%;">*Should be actual photograph, no glasses,not blurred,</p><br>
+    <button class="btn btn-default btn-responsive" style="color:white;background:rgb(145,26,48);font-size:150%;margin:auto;margin-left:45%;height:2em;width:7em;border-radius:14px;">Upload</button>
+</div>
+<!--<div class="" style="background:red;margin-bottom:0px;">
+<p style="float:left;">    Copyright@creotist.com 2015</p>
+	<ul class="list-inline" style="float:right;">
+		<li><a href="#">About us</a></li>
+		<li><a href="#">Help</a></li>
+		<li><a href="#">Developer</a></li>
+		<li><a href="#">Career</a></li>
+		<li><a href="#">Feedback</a></li>
+		<li><a href="#">FAQs</a></li>
+	</ul>
+</div>-->
+<script>
+$(document).on('change', '.btn-file :file', function() {
+  var input = $(this),
+      numFiles = input.get(0).files ? input.get(0).files.length : 1,
+      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+  input.trigger('fileselect', [numFiles, label]);
+});
+
+$(document).ready( function() {
+    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+        
+        var input = $(this).parents('.input-group').find(':text'),
+            log = numFiles > 1 ? numFiles + ' files selected' : label;
+        
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+        
+    });
+});
+</script>
+</body>	
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+		<head>
+			<title>Home Page</title>
+			<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="shortcut icon" href="../favicon.ico"> 
+	    <link rel="stylesheet" type="text/css" href="css\default.css" />
+	    <link rel="stylesheet" type="text/css" href="css\component.css" />
+	    <script src="js\modernizr.custom.js"></script>
+		   <style>
+		 
+          body{background-color:#e6e6e6}
+            p { display:inline; color:red;   }
+           .pa{height: auto;  border: 1px;border-style: solid; border-color: #999999; background-color: white; margin: 0 20px; padding: 0px}
+           .ca{height: auto; padding: 10px 0 10px 0; border: 1px;border-style: solid; border-color: #999999; background-color: white;display: inline; margin: 0 20px;}
+           .cc{height: auto;  border: 1px;border-style: solid; border-color: #999999; background-color: white; width: auto; margin: auto;padding: 0px}
+           .cc img{height: 75%;width: 82%; margin:0 10px;}
+           .hw {  height:17px;  width:17px;}  a {color: white} 
+          a:hover{color: white; text-decoration: none}
+          p a{color:rgb(145,26,48);text-decoration: none;} p a:hover{color:rgb(145,26,48); text-decoration: none;}
+          p{color: #595959}
+          div ul li a{color: #595959;} div ul li a:hover{color: #595959;}
+          .line{background-color:rgb(145,26,48);  } .lin{background-color:white}
+          .btn-file {   background-color: white;  display:inline;border-radius:0px; border: 0px }
+          .btn-file:hover {display:inline;border-radius:0px;background-color: white;  }
+          .btn-file input[type=file] {  position: absolute;  top: 0;  right: 0;  font-size: 100px; text-align: right;
+              filter: alpha(opacity=0);   opacity: 0;  cursor: inherit; }
+              nav{z-index:999;}
+      </style>
+			<script>
+						$(document).ready(function() {
+				        var scntDiv = $('#p_scents');
+				        var i = $('#p_scents p').size() + 1;
+				        
+				          $('#addScnt').on('click', function() {
+				                $('<p><label for="p_scnts"><input type="checkbox" id="p_scnt" class="checkbox" name="p_scnt_' + i +'" value="" placeholder="" style="display:inline;" /><p><label for="p_scnts"><input type="text" id="p_scnt" class="form-control" size="12" style="color:rgb(145,26,48);" name="p_scnt_' + i +'" value="" placeholder="Add Category" /></label> <a href="#" id="remScnt"></a></p><br>').appendTo(scntDiv);
+				                i++;
+				                return false;
+				        });
+				        
+				        $('#remScnt').on('click', function() { 
+				                if( i > 2 ) {
+				                        $(this).parents('p').remove();
+				                        i--;
+				                }
+				                return false;
+				        });
+				});
+
+		</script>
+		</head>
+		<body>
+	<body>
+	  <nav class="navbar" style="background:rgb(145,26,48); color:#fff;">
+  	  <div class="container-fluid">
+    
+			    <div class="navbar-header" >
+				      
+				      <img src="images\icon.jpg" style="display:inline;float:left"> 
+
+              <div class="input-group hidden-lg hidden-md hidden-sm" style="margin-left:28%" >            
+            <input type="text" class="form-control" placeholder="Search for..." style="width:150px;border-radius:10px 0 0 10px; display:inline;top:8px ">
+              <button class="btn btn-default" style="border-radius:0 12px 12px 0;margin-top:8px" type="button">
+               <img src="images\search-icon.png" class="hw"></button>
+            
+          </div >
+			    </div>
+				    
+       <div class="collapse navbar-collapse" >
+     
+      <form class="navbar-form hidden-xs " role="search" style="float:left;margin-left:6%" >
+			         <div>
+			    <div class="input-group" >
+			      
+			      <input type="text" class="form-control " placeholder="Search for..." style="width:280px; border-radius:10px 0 0 10px; ">
+			        <button class="btn btn-default" style="border-radius:0 12px 12px 0" type="button">
+			         <img src="images\search-icon.png" class="hw"></button>
+			      </span> 
+			    </div >
+			  		<span class="hidden-sm hidden-xs"> <a href="#"> | Expert Mode</a></span>            
+			  </div> 
+  	 </form>    
+     
+      <ul class="nav navbar-nav navbar-right" style="float:left">
+        <li class="dropdown hidden-xs "><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"  style="background:url(icons.jpg);background-position:-10px 0px;width:40px;height:53px;background-repeat:no-repeat;"> </a>
+          <ul class="dropdown-menu  disabled">
+
+           
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle hidden-xs " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="background:url(icons.jpg);background-position:-49px 0px;width:40px;height:53px;background-repeat:no-repeat; "></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><img src="#">Message1</a></li>
+            <li><a href="#"><img src="#">Message2</a></li>
+            <li><a href="#"><img src="#">Message3</a></li>
+            <li><a href="#"><img src="#">Message4</a></li>
+          </ul>
+        </li>
+
+         <li class="dropdown"><a href="#" class="dropdown-toggle hidden-xs " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"style="background:url(icons.jpg);background-position:-96px 0px;width:40px;height:53px;background-repeat:no-repeat;"> </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Notification1</a></li>
+            <li><a href="#">Notification2</a></li>
+            <li><a href="#">Notification3</a></li>
+            <li><a href="#">Notification4</a></li>
+          </ul>
+        </li>
+
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle hidden-xs " data-toggle="dropdown" role="button" style="background:url(icons.jpg);background-position:-150px 0px;width:40px;height:53px;background-repeat:no-repeat;"> </a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><img src="#">Vedant Vyas</a></li>
+           <li role="separator" class="divider"></li>
+            <li><a href="#">Privacy</a></li>
+            <li role="separator" class="divider"></li>
+            <li><button class="btn" style="background-color:rgb(145,26,48); padding:auto 0px auto 0px;color:white; font-size:90%">My Account</button><button class="btn" style="background-color:grey;color:white;font-size:90%;margin-left:2px;padding:auto 0px auto 0px">Logout</button></li>
+          </ul>
+        </li>
+      </ul>
+
+  <!-- /.container-fluid -->
+ </nav>
+    
+
+      </div><!-- /.navbar-collapse -->
+
+          <div class="column hidden-lg hidden-sm" style="position:absolute;top:5px;left:0;z-index:9">
+          <div id="dl-menu" class="dl-menuwrapper">
+            <button class="dl-trigger">Open Menu</button>
+            <ul class="dl-menu">
+              <li>
+                <a href="#"><img src="images\pa.jpg">Profile</a>
+                <ul class="dl-submenu">
+                  <li>
+                    <a href="#">Account</a>
+                    <ul class="dl-submenu">
+                      <li><a href="#">Profile Update</a></li>
+                      <li><a href="#">Change Password</a></li>
+                      <li><a href="#">Pages</a></li>
+                      <li><a href="#">Likes</a></li>
+                      <li><a href="#">Favourites</a></li>
+                      
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Settings</a>
+                    <ul class="dl-submenu">
+                      <li><a href="#">Privacy</a></li>
+                      <li><a href="#">Block</a></li>
+                      <li><a href="#">ads</a></li>
+                      <li><a href="#">report spam</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Groups</a>
+                    <ul class="dl-submenu">
+                      <li><a href="#">Boys</a></li>
+                      <li><a href="#">Girls</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#"><img src="images\ma.jpg">Messages</a>
+                <ul class="dl-submenu">
+                  <li><a href="#">Message1</a></li>
+                  <li><a href="#">Message2</a></li>
+                  <li><a href="#">Message3</a></li>
+                  <li><a href="#">Message4</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#"><img src="images\na.jpg">Notifications</a>
+                   <ul class="dl-submenu">
+                      <li><a href="#">Notification1</a></li>
+                      <li><a href="#">Notification2</a></li>
+                      <li><a href="#">Notification3</a></li>
+                      <li><a href="#">Notification4</a></li>
+                    </ul>
+                  </li>
+                 
+              <li>
+                <a href="#"><img src="images\aa.jpg">Account</a>
+                <ul class="dl-submenu">
+                  <li><a href="#">Vedant Vyas</a></li>
+                 
+                  <li><a href="#">Privacy</a></li>
+                  <li style="border-bottom:0.19em solid ; border-color:#8c8c8c"></li>
+                  <li><input type="button" value="My Account" style="background-color:rgb(145,26,35);color:white;margin-right:3px"><input type="button" style="background-color:rgb(145,26,35);color:white;margin-right:3px" value="Logout"></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /dl-menuwrapper -->
+        </div>
+
+	<div class="container" >
+			<div class="row hidden-sm hidden-xs hidden-md" style="margin-top:15px;border:solid 0px #000000">
+				<div class="col-md-3 pa" style="color:#000000; font-weight:200;height:65px;width:200px;margin:left"><img src="images\usr.jpg"><span style="margin-top:10px;font-size:14px">Aisha Shinghal</span><span class="glyphicon glyphicon-pencil" style="margin-left:30px;width:20px; color:grey;"></span></div>
+				
+				<div class="col-md-6 ca col-lg-offset-1" style="height:65px;margin-left:8px;width:540px"><input type="text" class="form-control" style="display:inline;width:72%;margin-left:8px; background-color:#cccccc;color:#4d4d4d;margin-top:5px;" placeholder="Whats on your mind?"> 
+
+					
+
+  	<span class="btn btn-primary btn-file" >
+       <input class="up" type="file" multiple><img src="images\attach.jpg" style="display:inline"></span>
+
+
+
+				 <button class="btn" style="background-color:#8c8c8c;color:white; display:inline">Update</button></div>
+				
+				<div class="col-md-2 cc hidden-xs hidden-sm hidden-md" style="margin-right:25px"><img src="images\usrs.jpg"><span class="glyphicon glyphicon-chevron-right" style="color:grey;"></span></div>
+			</div>
+
+			<div class="row">
+				<h4 class="col-md-2" style="color:#911a30; font-weight:100" style="margin-top:30px;margin-left:30px;">Favorite Categories</h4>
+				<div class="col-md-1"> </div>
+				<div class="col-md-5 checkbox hidden-sm hidden-xs hidden-md" style="margin-left:-50px;"><label style="padding-right:10px;color:#595959"><input type="checkbox" style="margin-top:8px" value="">Videos</label><label style="padding-right:10px;color:#595959;"><input type="checkbox" style="margin-top:8px"value="">Audios</label>
+										<label style="padding-right:10px;color:#595959"><input type="checkbox" style="margin-top:8px" value="">Images</label><label style="padding-right:10px;color:#595959"><input type="checkbox" style="margin-top:8px"value="">Updates</label>
+				 </div>
+				<div class="col-md-1"> </div>
+					<div class="col-md-2">
+						<div class="dropdown">
+								  <button class="btn  dropdown-toggle" style="text-align:left;background-color:#737373;margin-top:15px;margin-left:50px; border-radius:10px;width:120%;color:white" type="button" data-toggle="dropdown">Popularity
+								  <span style="float:right;width:10px;margin-top:7.5px;"class="caret"></span></button>
+								  <ul class="dropdown-menu" style="width:125%;margin-left:50px;">
+								    <li><a href="#">1.</a></li>
+								    <li><a href="#">2.</a></li>
+								    <li><a href="#">3.</a></li>
+								  </ul>
+						</div>
+					</div>
+					
+					<div class="col-md-1"> </div>
+			</div>
+
+
+
+	<div class="row"> 
+				<div class="col-md-2" style="margin-top:-15px">
+							<div class="checkbox">
+						  <label style="color:#595959;"><input type="checkbox" value="" style="margin-top:8px">All</label>
+						</div>
+						<div class="checkbox">
+						  <label style="color:#595959"><input type="checkbox" value="" style="margin-top:8px">Dancing</label>
+						</div>
+						<div class="checkbox ">
+						  <label style="color:#595959"><input type="checkbox" value=""  style="margin-top:8px">Cooking</label>
+						</div>
+						<div class="checkbox">
+						  <label style="color:#595959"><input type="checkbox" value="" style="margin-top:8px">Writing</label>
+						</div>
+						<div class="checkbox">
+						  <label style="color:#595959"><input type="checkbox" value="" style="margin-top:8px">Designing</label>
+						</div>
+						<div class="checkbox ">
+						  <label style="color:#595959"><input type="checkbox" value="" style="margin-top:8px">Filming</label>
+						</div>
+                      
+						<div class="checkbox " id="p_scents" style="margin-top:25px"> </div>
+						<p ><a href="#" id="addScnt" ><img src="images\plus.jpg" >Add Category</a></p>
+                        <br><br>
+						
+
+
+						<div style="border-bottom:0.19em solid ; border-color:#8c8c8c";></div>
+						<div style="color:#878787;font-size:14px;margin-top:5px;text-align:center"> 
+								<ul class="list-unstyled"style="display:inline;">
+								 <li style="display:inline;"><a href="#">About Us </a>|</li>
+								<li style="display:inline;"><a href="#">Help </a>|</li>
+								<li style="display:inline;"><a href="#">Developer </a> |</li>
+								<li style="display:inline;"><a href="#">Career </a>|</li>
+								<li style="display:inline;"><a href="#">Feedback </a>|</li>
+								<li style="display:inline;"> <a href="#">FAQs</a> </li>
+								</ul>
+						</div>
+				</div>
+				
+			<div class="col-md-9 col-md-offset-0 row">
+                <div class="col-md-4">
+                <div class="well" style="height:auto; width:250px; float:left; margin: 10px" >
+						<p >Back to College @ Nbai</p>
+						<h6><i>Dancing</i></h6>
+						<div></div>
+						<div><img src="">Abhishek <span style="float:right"><i>5 minutes ago</span></div>
+					</div>
+					<div class="well" style="height:auto; width:250px; float:left; margin:10px" >
+						<p >Hindi Solo Singing</p>
+						<h6><i>Singing</i></h6>
+						<div><iframe width="200" height="100" src="https://www.youtube.com/embed/fMAbXm-ALrE" frameborder="0" allowfullscreen></iframe></div>
+						<div><img src="">Abhishek <span style="float:right"><i>5 minutes ago</span></div>
+					</div> 
+                    
+                    </div>
+
+
+					<div class="well col-md-4" style="height:auto; width:250px; float:left; margin:10px" >
+						<p >Beat Boxing</p>
+						<h6><i>Singing</i></h6>
+						<div><iframe width="200" height="100" src="https://www.youtube.com/embed/xVAka_y3BC0" frameborder="0" allowfullscreen></iframe></div>
+						<div><img src="">Abhishek <span style="float:right"><i>5 minutes ago</span></div>
+					</div>
+
+					<div class="well col-md-4" style="height:auto; width:250px; float:left; margin:10px" >
+						<p >Streat Dance</p>
+						<h6><i>Dancing</i></h6>
+						<div><iframe width="200" height="100" src="https://www.youtube.com/embed/4JeiUDkpwSc" frameborder="0" allowfullscreen></iframe></div>
+						<div><img src="">Abhishek <span style="float:right"><i>5 minutes ago</span></div>
+					</div>
+
+					
+
+
+				</div>
+
+	</div>
+
+
+	</div>
+
+<div class="container">
+
+<div class="dropup">
+    <button class="btn btn-default dropdown-toggle" style="bottom:0px;right:0px;position:fixed;width:20%;margin-right:20px;background-color:rgb(145,26,48);border-radius:15px 15px 0 0;color:white;text-align:left" type="button" data-toggle="dropdown">Chat
+    <span class="badge" style="float:right">2</span></button>
+    <ul class="dropdown-menu dropdown-menu-right" style="bottom:32px;right:0px;position:fixed;width:20%;margin-right:20px;height:25%">
+      <li style="bottom:36px; margin-left:2px;position:fixed"><input type="text"style="bottom:36px; position:fixed;width:19.55%;" placeholder="Write a message" ></li>
+    </ul>
+  </div>
+</div>
+
+			<script type="text/javascript">
+					$(document).on('change', '.btn-file :file', function() {
+					  var input = $(this),
+					      numFiles = input.get(0).files ? input.get(0).files.length : 1,
+					      label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+					  input.trigger('fileselect', [numFiles, label]);
+					});
+
+					$(document).ready( function() {
+					    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+					        
+					        var input = $(this).parents('.input-group').find(':text'),
+					            log = numFiles > 1 ? numFiles + ' files selected' : label;
+					        
+					        if( input.length ) {
+					            input.val(log);
+					        } else {
+					            if( log ) alert(log);
+					        }
+					        
+					    });
+					});
+			</script>
+			
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js\jquery.dlmenu.js"></script>
+    <script>
+      $(function() {
+        $( '#dl-menu' ).dlmenu({
+          animationClasses : { classin : 'dl-animate-in-4', classout : 'dl-animate-out-4' }
+        });
+      });
+    </script>
+
+		</body>
+</html>
